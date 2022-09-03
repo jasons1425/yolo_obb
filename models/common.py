@@ -2392,7 +2392,7 @@ class RBBlockA(nn.Module):
         # in_cs = [current channel, shallow channel, deep channel]
         # current/shallow = [Conv size, kernel size, stride]
         super(RBBlockA, self).__init__()
-        self.up1 = nn.Upsample(size=None, scale_factor=sf, mode=mode)  # for deep layer (i+1)-th
+        self.up1 = nn.Upsample(size=None, scale_factor=sf, mode=mode) if sf > 1 else nn.Identity() # for deep layer (i+1)-th
         self.cv1 = Conv(in_cs[0], *current)  # for current layer i-th
         self.cv2 = Conv(in_cs[1], *shallow)  # for shallow layer (i-1)-th
         self.out_cv = Conv(current[0] + shallow[0] + in_cs[2], out_c, 1, 1)
@@ -2411,7 +2411,7 @@ class RBBlockB(nn.Module):
     def __init__(self, in_cs, out_c, current, shallow, deep, sf=2, mode="nearest"):
         # current/shallow/deep = [Conv size, kernel size, stride]
         super(RBBlockB, self).__init__()
-        self.up1 = nn.Upsample(size=None, scale_factor=sf, mode=mode)  # for deep layer (i+1)-th
+        self.up1 = nn.Upsample(size=None, scale_factor=sf, mode=mode) if sf > 1 else nn.Identity()  # for deep layer (i+1)-th
         self.cv1 = Conv(in_cs[0], *current)  # for current layer i-th
         self.cv2 = Conv(in_cs[1], *shallow)  # for shallow layer (i-1)-th
         self.cv3 = Conv(in_cs[2], *deep)  # for deep layer (i+1)-th
@@ -2460,6 +2460,7 @@ class BFMBlockB(nn.Module):
         x1 = self.cv1(x[0])
         x2 = self.cv2(x[1])
         return self.out_cv(torch.cat((x1, x2), dim=1))
+
 
 ##### end of PRB-FPN #####
 
