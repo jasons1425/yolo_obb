@@ -11,11 +11,15 @@ The codes here are mostly based on the [hukaixuan19970627/yolov5_obb](https://gi
 
 # Installation & Getting started
 
-Please refer to the [yolov5_obb README](https://github.com/hukaixuan19970627/yolov5_obb/blob/master/README.md) to get started.
+Please refer to the [yolov5_obb README](./yolov5obb_README.md) to get started.
+
+# Pretrained weights
+
+In Progress
 
 # Acknowledgements
 
-Most of the codes are modified based on other amazing open-sourced repos. We would like to especially give credits to the below authors:
+Most of the codes are modified based on other amazing open-sourced repos. We would like to given special credits to the below authors:
 
 * [WongKinYiu/yolov7](https://github.com/WongKinYiu/yolov7)
 * [hukaixuan19970627/yolov5_obb](https://github.com/hukaixuan19970627/yolov5_obb)
